@@ -8,26 +8,22 @@
     <p id="result"></p>
 
 	<script>
-       function insertionSort(arr) {
+       function quickSort(arr) {
     const {length} = arr;
-    let temp;
-    for (let i = 1; i < length; i++) {
-        temp = arr[i];
-        let j = i - 1;
-        while (j >= 0 && arr[j] > temp) {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = temp;
+    if (length <= 1) {
+        return arr;
     }
-    document.getElementById("result").innerHTML = arr.join(", ");
-    console.log(arr);
+    let pivot = arr[0];
+    let minArr = arr.slice(1).filter(item=>item<=pivot);
+    let maxArr = arr.slice(1).filter(item=>item>pivot);
+    arr = quickSort(minArr).concat(pivot).concat(quickSort(maxArr));
+    return arr;
 }
-
-        insertionSort([5, 3, 8, 6, 2, 7, 1, 4]);
-        //arr = quickSort([5, 3, 8, 6, 2, 7, 1, 4], 0, 7);
-        document.getElementById("result").innerHTML = arr.join(", ");
+        //insertionSort([5, 3, 8, 6, 2, 7, 1, 4]);
+    let ans = quickSort([5, 3, 8, 6, 2, 7, 1, 4]);
+    document.getElementById("result").innerHTML = ans.join(", ");
 
     </script>
+
 </body>
 </html>
