@@ -42,6 +42,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function showTable(category) {
+        const homepageStyle = document.getElementById('sdButton');
+
+        if (category === "SD") {
+            homepageStyle.style.color = "rgb(49, 122, 200)";
+            homepageStyle.style.borderBottom = "2px solid rgb(49, 122, 200)";
+        }else{
+            homepageStyle.style.color = "black";
+            homepageStyle.style.borderBottom = "none";
+        }
+        
         const filteredData = data.filter(item => item.category === category);
 
         filteredData.sort((a, b) => b['DX-Rating'] - a['DX-Rating']);
