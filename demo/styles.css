@@ -35,7 +35,7 @@ table {
 
 th, td {
     padding: 10px;
-    white-space: nowrap; /* Ensure no vertical text */
+    white-space: nowrap; 
 }
 
 th {
@@ -55,6 +55,34 @@ td {
     padding: 10px 20px;
     border: none;
 }
+
+.difficulty-container {
+    position: relative;
+}
+
+.difficulty-container:hover .difficultyPopover{
+    opacity: 1;
+}
+
+.difficultyPopover {
+    position: absolute;
+    left: 100px;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    background-color: rgba(102, 102, 102, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+
+
+/* .difficulty-button:hover::after {
+    opacity: 1;
+} */
 
 .Expert {
     background-color: rgb(239, 77, 90);

@@ -21,12 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let data;
 
-    // Fetch data from data.json
     fetch('data.json')
         .then(response => response.json())
         .then(jsonData => {
             data = jsonData;
-            showTable('SD'); // Default to showing SD category
+            showTable('SD'); 
         });
 
     sdButton.addEventListener('click', () => {
@@ -75,7 +74,14 @@ document.addEventListener("DOMContentLoaded", function () {
             row.innerHTML = `
                 <td>${index + 1}</td>
                 <td>${name}</td>
-                <td><button class="difficulty-button ${difficulties[item.difficulty]}">${item.difficulty}</button></td>
+                <td>
+                    <div class="difficulty-container">
+                        <button class="difficulty-button ${difficulties[item.difficulty]}">${item.difficulty}</button>
+                        <div class="difficultyPopover">
+                            <p class="diffPopoverInfo">info of songs</p>
+                        </div>
+                    </div>   
+                </td>
                 <td>${item['level']}</td>
                 <td>${item['DX-Rating']}</td>
                 <td>${item['concrete-level']}</td>
@@ -85,9 +91,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     <button data-popover="填入计算器"><img src="../images/image-03.png" alt="填入计算器"></button>
                 </td>
             `;
-
+            
+            
+            
             tableBody.appendChild(row);
+            //document.getElementById("diffPopoverInfo").textContent = item.name;
+            // const diffPopover = document.getElementById("diffPopoverInfo")
+            // diffPopover.innerHTML = `${name}`;
 
+            const diffPopover = row.querySelector('.diffPopoverInfo');
+            diffPopover.textContent = item.name;
+            
             const viewCoverButton = row.querySelector('button[data-popover="查看封面"]');
             viewCoverButton.addEventListener('click', () => {
                 document.getElementById('modal-song-name').textContent = item.name;
@@ -96,9 +110,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    window.onclick = function (event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    }
+    // window.onclick = function (event) {
+    //     if (event.target === modal) {
+    //         closeModal();
+    //     }
+    // }
 });
