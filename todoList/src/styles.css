@@ -14,18 +14,21 @@ h1 {
     margin-bottom: 20px;  
 }  
 
+/* 更新 todo-container 以支持响应式 */  
 .todo-container {  
     background: white;  
-    width: 550px;  
+    width: 90%; /* 使用百分比宽度 */  
+    max-width: 550px; /* 最大宽度 */  
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);  
 }  
 
+/* 输入容器样式 */  
 .input-container {  
     position: relative;  
 }  
 
 #todo-input {  
-    width: 490px;  
+    width: calc(100% - 60px); /* 根据容器宽度计算 */  
     font-size: 24px;  
     padding: 16px 0px 16px 60px;  
     border: none;  
@@ -55,11 +58,12 @@ h1 {
 #todo-list li {  
     font-size: 24px;  
     border-bottom: 1px solid #ededed;  
-    border-top: 1px solid #ededed;
+    border-top: 1px solid #ededed;  
     padding: 15px 15px 15px 60px;  
     position: relative;  
 }  
 
+/* Checkbox 样式 */  
 .todo-item input[type="checkbox"] {  
     position: absolute;  
     left: 10px;  
@@ -101,20 +105,21 @@ h1 {
     height: 20px;  
     text-align: center;  
     border-top: 1px solid #e6e6e6;  
-    position: relative;
+    position: relative;  
 }  
 
-#items-left {
-    position: absolute;
-    left: 5%;
-}
+#items-left {  
+    position: absolute;  
+    left: 5%;  
+}  
 
+/* Filters 样式 */  
 .filters {  
     display: inline;  
     margin: 0 7px;  
-    position: absolute;
-    left: 30%;
-    bottom: 6px;
+    position: absolute;  
+    left: 30%;  
+    bottom: 6px;  
 }  
 
 .filters button {  
@@ -123,7 +128,7 @@ h1 {
     border: 1px solid transparent;  
     border-radius: 3px;  
     cursor: pointer;  
-    background-color: white;
+    background-color: white;  
 }  
 
 .filters button:hover {  
@@ -135,11 +140,31 @@ h1 {
 }  
 
 #clear-completed {  
-    position: absolute;
+    position: absolute;  
     right: 5%;  
     cursor: pointer;  
 }  
 
 #clear-completed:hover {  
     text-decoration: underline;  
+}  
+
+/* 媒体查询 */  
+@media (max-width: 600px) {  
+    h1 {  
+        font-size: 40px; /* 小屏幕字体 */  
+    }  
+
+    #todo-input {  
+        width: calc(100% - 40px); /* 调整输入框宽度 */  
+    }  
+
+    #todo-list li {  
+        font-size: 20px; /* 小屏幕上的字体大小 */  
+        padding: 10px 10px 10px 50px; /* 调整内边距 */  
+    }  
+
+    .filters {  
+        left: 20%; /* 调整过滤器的位置 */  
+    }  
 }

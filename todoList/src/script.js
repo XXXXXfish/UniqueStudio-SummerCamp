@@ -1,8 +1,19 @@
+import './styles.css';
+
 class TodoList {  
     constructor() {  
-        this.todos = [];  
+        this.todos = this.loadTodos();  // 从 localStorage 加载待办事项  
         this.filter = 'all';  
         this.init();  
+    }  
+
+    loadTodos() {  
+        const todos = localStorage.getItem('todos');  
+        return todos ? JSON.parse(todos) : [];  // 从 localStorage 获取待办事项  
+    }  
+
+    saveTodos() {  
+        localStorage.setItem('todos', JSON.stringify(this.todos));  // 保存待办事项到 localStorage  
     }  
 
     init() {  
@@ -42,29 +53,34 @@ class TodoList {
 
     addTodo(text) {  
         this.todos.push({ id: Date.now(), text, completed: false });  
+        this.saveTodos();  // 更新 localStorage  
         this.render();  
     }  
 
     deleteTodo(id) {  
         this.todos = this.todos.filter(todo => todo.id !== id);  
+        this.saveTodos();  // 更新 localStorage  
         this.render();  
     }  
 
     toggleTodo(id) {  
         this.todos = this.todos.map(todo =>  
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo  
         );  
+        this.saveTodos();  // 更新 localStorage  
         this.render();  
     }  
 
     toggleAllTodos() {  
         const allCompleted = this.todos.every(todo => todo.completed);  
         this.todos = this.todos.map(todo => ({ ...todo, completed: !allCompleted }));  
+        this.saveTodos();  // 更新 localStorage  
         this.render();  
     }  
 
     clearCompletedTodos() {  
         this.todos = this.todos.filter(todo => !todo.completed);  
+        this.saveTodos();  // 更新 localStorage  
         this.render();  
     }  
 
